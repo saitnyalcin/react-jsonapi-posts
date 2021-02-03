@@ -7,12 +7,15 @@ const Posts = () => {
   const [loading, setLoading] = useState(true);
 
   const userCallApi = async () => {
-    // await response of fetch call
-    let response = await fetch("https://jsonplaceholder.typicode.com/posts");
-    // only proceed once promise is resolved
-    let data = await response.json();
-    // only proceed once second promise is resolved
-    return setData(data);
+    await fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .then((result) => {
+        console.log("Success:", result);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   useEffect(() => {
@@ -23,7 +26,7 @@ const Posts = () => {
       } catch (error) {
         console.log(error);
       }
-    }, 4000);
+    }, 8000);
   }, []);
 
   return (
