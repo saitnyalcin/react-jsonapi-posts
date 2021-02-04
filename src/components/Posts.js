@@ -37,7 +37,7 @@ const Posts = () => {
       ) : (
         <div className="posts">
           {data.map((item) => (
-            <div className="flex-grid">
+            <div key={item.id} className="flex-grid">
               <div className="col">{item.title}</div>
               <div className="col">{item.body}</div>
             </div>
